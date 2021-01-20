@@ -22,8 +22,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Helm tool installer
-        uses: Azure/setup-helm@v1
-        with:
-          # Version of helm
-          version: 3.5.0
+    - name: Install Helm
+      uses: redhat-actions/openshift-cli-installer@v1
+      with:
+        - helm: 3
+        - oc_version: 4.5
