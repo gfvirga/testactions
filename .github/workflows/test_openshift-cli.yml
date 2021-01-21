@@ -1,0 +1,40 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: self-hosted
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Install CLIs
+        uses: redhat-actions/openshift-cli-installer@v1
+        with:
+          # Installs the latest camel-k release.
+          kamel: latest
+
+          # Installs the latest release of oc with the major version 3.
+          # This is equivalent to "3.x" or "^3".
+          oc: "3"
+
+          # Installs the latest release of odo with the major version 2, and the minor version 0.
+          # This would install odo 2.0.3, but not odo 2.1.0.
+          odo: "2.0"
+
+          # This exact version will install version 0.11.0 of Tekton, no other version.
+          tkn: "0.11.0"
